@@ -1,0 +1,68 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/hooks/useAuth";
+import { ProtectedRoute } from "@/components/common/ProtectedRoute";
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
+import NotFound from "./pages/NotFound";
+import AppShell from "./components/app/AppShell";
+import Dashboard from "./pages/app/Dashboard";
+import AgentsList from "./pages/app/AgentsList";
+import AgentDetail from "./pages/app/AgentDetail";
+import NewAgent from "./pages/app/NewAgent";
+import Chat from "./pages/app/Chat";
+import Tasks from "./pages/app/Tasks";
+import Trading from "./pages/app/Trading";
+import GitHub from "./pages/app/GitHub";
+import Logs from "./pages/app/Logs";
+import Settings from "./pages/app/Settings";
+import Reference from "./pages/app/Reference";
+import AdminInfra from "./pages/app/AdminInfra";
+import Crawl from "./pages/app/Crawl";
+import Links from "./pages/app/Links";
+import Vault from "./pages/app/Vault";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/app" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
+              <Route index element={<Dashboard />} />
+              <Route path="agents" element={<AgentsList />} />
+              <Route path="agents/new" element={<NewAgent />} />
+              <Route path="agents/:id" element={<AgentDetail />} />
+              <Route path="chat" element={<Chat />} />
+              <Route path="chat/:agentId" element={<Chat />} />
+              <Route path="tasks" element={<Tasks />} />
+              <Route path="trading" element={<Trading />} />
+              <Route path="github" element={<GitHub />} />
+              <Route path="logs" element={<Logs />} />
+              <Route path="reference" element={<Reference />} />
+              <Route path="crawl" element={<Crawl />} />
+              <Route path="links" element={<Links />} />
+              <Route path="vault" element={<Vault />} />
+              <Route path="admin/infra" element={<AdminInfra />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
