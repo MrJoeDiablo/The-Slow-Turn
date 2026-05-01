@@ -5,7 +5,7 @@ import { Toaster as Sonner } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { AuthProvider } from '@/hooks/useAuth';
 import Landing from '@/pages/Landing';
-import Chat from '@/pages/app/Chat';
+import Chat from '@/pages/Chat';
 import { QueryClient } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
