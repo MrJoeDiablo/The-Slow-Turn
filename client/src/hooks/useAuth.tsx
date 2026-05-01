@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { Session, User } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
 
 type Role = "owner" | "admin" | "operator" | "viewer";
 
@@ -16,6 +15,8 @@ const Ctx = createContext<AuthCtx>({
   user: null, session: null, roles: [], loading: true, signOut: async () => {},
 });
 
+// AuthProvider is disabled - app runs in standalone mode without authentication
+/*
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
@@ -39,6 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return <Ctx.Provider value={{ user, session, roles, loading, signOut }}>{children}</Ctx.Provider>;
 }
+*/
 
 export const useAuth = () => useContext(Ctx);
 
