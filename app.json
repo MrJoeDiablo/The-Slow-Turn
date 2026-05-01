@@ -1,0 +1,29 @@
+{
+  "name": "The Slow Turn",
+  "description": "Team command center - Landing page & chat system",
+  "repo": "https://github.com/MrJoeDiablo/The-Slow-Turn",
+  "services": [
+    {
+      "name": "web",
+      "github": {
+        "repo": "MrJoeDiablo/The-Slow-Turn",
+        "branch": "main"
+      },
+      "build_command": "npm run install:all && npm run build",
+      "run_command": "npm start",
+      "envs": [
+        {
+          "key": "NODE_ENV",
+          "value": "production",
+          "type": "GENERAL"
+        },
+        {
+          "key": "PORT",
+          "value": "8080",
+          "type": "GENERAL"
+        }
+      ],
+      "http_port": 8080
+    }
+  ]
+}
